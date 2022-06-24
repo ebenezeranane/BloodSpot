@@ -1,12 +1,22 @@
+import 'package:bloodspot/pages/auth/login.dart';
+import 'package:bloodspot/pages/auth/signup.dart';
 import 'package:bloodspot/pages/get_started/get_started.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+
+Future<Null>main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
+  
+  runApp( MyApp());
 }
 
+DatabaseReference usersRef =
+    FirebaseDatabase.instance.reference().child("users");
+
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -17,7 +27,7 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const LogIn(),
     );
   }
 }

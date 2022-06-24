@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "165756106834",
+    "project_id": "bloodspot-4df46",
+    "storage_bucket": "bloodspot-4df46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165756106834:android:b01ad0804ded27279c878b",
+        "android_client_info": {
+          "package_name": "com.example.bloodspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165756106834-v3rd5obdfapi0bjot380ebp7bmb5ebud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzgAJ8ly36f-HLMg2LGB6bZfJa1oPl74c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165756106834-v3rd5obdfapi0bjot380ebp7bmb5ebud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
