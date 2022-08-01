@@ -38,9 +38,18 @@ dependencies:
   firebase_auth: ^3.3.20
   fluttertoast: ^8.0.9
   cloud_firestore: ^3.1.18
-  progress_dialog_null_safe: ^1.0.7
   firebase_core: ^1.18.0
   firebase_database: ^9.0.16
+  google_maps_flutter: ^2.0.6
+  geolocator: ^7.0.3
+  http: ^0.13.3
+  provider: ^5.0.0
+  flutter_polyline_points: ^1.0.0
+  line_icons: ^2.0.1
+  google_nav_bar: ^5.0.6
+  url_launcher: ^6.1.5
+  share_plus: ^4.0.10
+  flutter_svg: ^1.1.1+1
   
 
 
@@ -70,6 +79,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
