@@ -29,143 +29,133 @@ class _SearchScreenState extends State<SearchScreen> {
     print(placeAddress);
 
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: 215.0,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 6.0,
-                  spreadRadius: 0.5,
-                  offset: Offset(0.7, 0.7),
-                ),
-              ],
-            ),
+        body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 25.0, top: 25.0, right: 25.0, bottom: 20.0),
-              child: Column(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //Find Donor Text
+          Container(
+            margin: const EdgeInsets.only(bottom: 10, top: 20),
+            child: const Text(
+              "Find Donor",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ),
+          //Search for Blood Donors Text
+          const Text(
+            'Search for Blood Donors around You',
+          ),
+          const Padding(padding: EdgeInsets.only(top: 20)),
+          //Find Location Text
+          const Text(
+            "Find Location",
+            style: TextStyle(),
+          ),
+          const Padding(padding: EdgeInsets.only(top: 10)),
+          //Input Section
+
+          Card(
+            color: Colors.transparent,
+            elevation: 20,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.amber, borderRadius: BorderRadius.circular(20)),
+              padding: EdgeInsets.only(left: 20),
+              height: MediaQuery.of(context).size.height * 0.07,
+              child: Row(
                 children: [
-                  const SizedBox(height: 25.0),
-                  Stack(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Icon(Icons.arrow_back),
-                      ),
-                      const Center(
-                        child: Text(
-                          "Search Health Center",
-                          style: TextStyle(
-                              fontSize: 18.0, fontFamily: "Brand Bold"),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16.0),
-                  Row(
-                    children: [
-                      // Image.asset("images/pickicon.png", height: 16.0, width: 16.0,),
-
-                      const SizedBox(
-                        width: 18.0,
-                      ),
-
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: TextField(
-                              controller: pickUpTextEditingController,
-                              decoration: InputDecoration(
-                                hintText: "Current Location",
-                                fillColor: Colors.grey[200],
-                                filled: true,
-                                border: InputBorder.none,
-                                isDense: true,
-                                contentPadding: const EdgeInsets.only(
-                                    left: 11.0, top: 8.0, bottom: 8.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10.0),
-                  Row(
-                    children: [
-                      // Image.asset("images/desticon.png", height: 16.0, width: 16.0,),
-
-                      const SizedBox(
-                        width: 18.0,
-                      ),
-
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: TextField(
-                              onChanged: (val) {
-                                findPlace(val);
-                              },
-                              controller: dropOffTextEditingController,
-                              decoration: InputDecoration(
-                                hintText: "Health center",
-                                fillColor: Colors.grey[200],
-                                filled: true,
-                                border: InputBorder.none,
-                                isDense: true,
-                                contentPadding: const EdgeInsets.only(
-                                    left: 11.0, top: 8.0, bottom: 8.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  Flexible(
+                      child: TextField(
+                    controller: pickUpTextEditingController,
+                    decoration: const InputDecoration(
+                      hintText: "Current Location",
+                      border: InputBorder.none,
+                      filled: true,
+                      isDense: true,
+                      contentPadding:
+                          EdgeInsets.only(left: 11.0, top: 8.0, bottom: 8.0),
+                    ),
+                  ))
                 ],
               ),
             ),
           ),
-
+          const Padding(padding: EdgeInsets.only(top: 20)),
+          Card(
+            color: Colors.transparent,
+            elevation: 20,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.only(left: 20),
+              height: MediaQuery.of(context).size.height * 0.07,
+              child: Row(
+                children: [
+                  Flexible(
+                      child: TextField(
+                    onChanged: (val) {
+                      findPlace(val);
+                    },
+                    controller: dropOffTextEditingController,
+                    decoration: const InputDecoration(
+                      hintText: "Choose Your Hospital Location",
+                      border: InputBorder.none,
+                      isDense: true,
+                      filled: true,
+                      contentPadding:
+                          EdgeInsets.only(left: 11.0, top: 8.0, bottom: 8.0),
+                    ),
+                  ))
+                ],
+              ),
+            ),
+          ),
           //tile for predictions
-          const SizedBox(height: 10.0,),
-          (placePredictionList.length > 0)
+          const SizedBox(
+            height: 10.0,
+          ),
+          (placePredictionList.isNotEmpty)
               ? Expanded(
-                child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 16.0),
                     child: ListView.separated(
                       padding: const EdgeInsets.all(0.0),
-                      itemBuilder: (context, index)
-                      {
-                        return PredictionTile(placePredictions: placePredictionList[index],);
+                      itemBuilder: (context, index) {
+                        return PredictionTile(
+                          placePredictions: placePredictionList[index],
+                        );
                       },
-                      separatorBuilder: (BuildContext context, int index) => const DividerWidget(),
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const DividerWidget(),
                       itemCount: placePredictionList.length,
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
                     ),
                   ),
-              )
+                )
               : Container(),
+          //Search Button
+          // InkWell(
+          //   onTap: () => "Null",
+          //   child: Container(
+          //     color: Colors.red,
+          //     height: MediaQuery.of(context).size.height * 0.07,
+          //     child: Center(
+          //       child: Text(
+          //         "Search Nearby",
+          //         style: TextStyle(color: Colors.white),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
-    );
+    )));
   }
 
   void findPlace(String placeName) async {
@@ -258,9 +248,10 @@ class PredictionTile extends StatelessWidget {
 
   void getPlaceAddressDetails(String placeId, context) async {
     showDialog(
-      context: context,
-      builder: (BuildContext context) => ProgressDialog(message: "Sarching...",)
-    );
+        context: context,
+        builder: (BuildContext context) => ProgressDialog(
+              message: "Sarching...",
+            ));
 
     String placeDetailsUrl =
         "https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&key=$mapKey";
@@ -282,12 +273,8 @@ class PredictionTile extends StatelessWidget {
 
       Provider.of<AppData>(context, listen: false)
           .updateDropOffLocationAddress(address);
-     
-      
 
       Navigator.pop(context, "obtainDirection");
-
-      
     }
   }
 }
