@@ -12,33 +12,29 @@ import 'package:provider/provider.dart';
 
 import 'DataHandler/appData.dart';
 
-
-Future<Null>main() async{
+Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp();
-  
-  runApp( MyApp());
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
 }
 
 DatabaseReference usersRef =
     FirebaseDatabase.instance.reference().child("users");
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) =>AppData(),
+      create: (BuildContext context) => AppData(),
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          
-          primarySwatch: Colors.blue,
-        ),
-        home: GetStartedPage()     ),
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: GetStartedPage()),
     );
   }
 }
-
