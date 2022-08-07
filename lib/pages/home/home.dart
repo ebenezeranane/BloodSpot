@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../AllWidgets/appbar.dart';
@@ -18,6 +19,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    
+
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -29,7 +32,7 @@ class _HomeState extends State<Home> {
           body: SafeArea(
               child: Column(
             children: [
-              const Customappbar(
+              Customappbar(
                   userName: "Jared Prishska Albert",
                   userImage: "https://i.imgur.com/kQbx35z.jpg"),
               Container(

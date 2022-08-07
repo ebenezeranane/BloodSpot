@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatelessWidget {
@@ -30,6 +32,10 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    CollectionReference _users =
+    FirebaseFirestore.instance.collection('users');
+
     return Column(
       children: <Widget>[
         Expanded(
@@ -257,7 +263,8 @@ class MyWidget extends StatelessWidget {
                               padding: const EdgeInsets.all(10),
                               child: const Center(
                                 child: Icon(
-                                  Icons.mail_outline_rounded,
+                                   Icons.call_rounded,
+                                 
                                   size: 30,
                                   color: Colors.grey,
                                 ),
@@ -304,7 +311,7 @@ class MyWidget extends StatelessWidget {
                               padding: const EdgeInsets.all(10),
                               child: const Center(
                                 child: Icon(
-                                  Icons.call_rounded,
+                                  Icons.mail_outline_rounded,
                                   size: 30,
                                   color: Colors.grey,
                                 ),
@@ -319,7 +326,7 @@ class MyWidget extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [const Text("Email"), Text(email)],
+                                children: [const Text("Email"), Text(_auth.currentUser.email)],
                               ),
                             ),
                           ),

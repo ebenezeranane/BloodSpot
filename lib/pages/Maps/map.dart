@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
@@ -90,6 +91,16 @@ class MapSampleState extends State<MapSample> {
   }
 
   Positioned mapTrackDetails(BuildContext context) {
+
+    // get user  from email
+    String userName;
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    String email = _auth.currentUser.email;
+    int indexOfAt = email.indexOf('@');
+    String getUserFromEmail = email.substring(0, indexOfAt);
+    userName = getUserFromEmail;
+
+
     return Positioned(
       child: Column(
         children: [
@@ -188,9 +199,9 @@ class MapSampleState extends State<MapSample> {
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: const [
-                                        Text("Domino Alcuano"),
-                                        Text("Update, 23 menit yang lalu")
+                                      children:  [
+                                        Text(userName),
+                                        const Text("")
                                       ],
                                     ),
                                   ),
@@ -251,27 +262,35 @@ class MapSampleState extends State<MapSample> {
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: const [
-                                            Text("Posisi Rumah Sakit"),
-                                            Padding(
+                                          children:  [
+                                            const Text("Current Location"),
+                                            const Padding(
                                                 padding:
                                                     EdgeInsets.only(top: 2)),
                                             Text(
-                                              "Rumah Wijayakusuma, Jalan \nJalan no, 16 Purwokerto",
-                                              style: TextStyle(
+                                              
+                                    Provider.of<AppData>(context).pickUpLocation != null
+                                    ? Provider.of<AppData>(context).pickUpLocation.placeName
+                                    : "Add Home",
+                              
+                                              style: const TextStyle(
                                                   fontSize: 13,
                                                   color: Colors.grey),
                                             ),
-                                            Padding(
+
+                                            
+                                            const Padding(
                                                 padding:
                                                     EdgeInsets.only(top: 20)),
-                                            Text("Posisi Rumah Sakit"),
-                                            Padding(
+                                            const Text("Health Center"),
+                                            const Padding(
                                                 padding:
                                                     EdgeInsets.only(top: 2)),
                                             Text(
-                                              "Rumah Wijayakusuma, Jalan \nJalan no, 16 Purwokerto",
-                                              style: TextStyle(
+                                              Provider.of<AppData>(context).dropOffLocation != null
+                                              ? Provider.of<AppData>(context).dropOffLocation.placeName
+                                                : "",
+                                              style: const TextStyle(
                                                   fontSize: 13,
                                                   color: Colors.grey),
                                             )

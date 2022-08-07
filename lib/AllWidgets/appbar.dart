@@ -1,19 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Customappbar extends StatelessWidget {
-  final String userName;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String userName;
   final String userImage;
-  const Customappbar(
-      {Key key,  this.userName,  this.userImage})
-      : super(key: key);
+  Customappbar({Key key, this.userName, this.userImage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // get user  from email
+    String email = _auth.currentUser.email;
+    int indexOfAt = email.indexOf('@');
+    String getUserFromEmail = email.substring(0, indexOfAt);
+    userName = getUserFromEmail;
+
     return Padding(
         padding: const EdgeInsets.all(15),
         child: Column(children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            // Hi Jared!
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

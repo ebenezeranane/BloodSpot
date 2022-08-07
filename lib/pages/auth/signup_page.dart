@@ -17,6 +17,7 @@ class SignUpPage extends StatefulWidget {
 
 String email = "";
 String password = "";
+String phone;
 
 class _SignUpPageState extends State<SignUpPage> {
   @override
@@ -74,12 +75,21 @@ class _SignUpPageState extends State<SignUpPage> {
                                     'Email...',
                                     false,
                                     true,
+                                    false
+                                  ),
+                                  component(
+                                    Icons.phone,
+                                    'Phone...',
+                                    false,
+                                    false,
+                                    true
                                   ),
                                   component(
                                     Icons.lock_outline,
                                     'Password...',
                                     true,
                                     false,
+                                    false
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -110,7 +120,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
                                               HapticFeedback.lightImpact();
-                                              Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          LoginPage()));
                                             },
                                         ),
                                       ),
@@ -127,18 +141,16 @@ class _SignUpPageState extends State<SignUpPage> {
                                       );
 
                                       if (!email.contains("@")) {
-                                    displayToastMessage("Email address is not Valid.", context);
-              
-                                    } else if (password.length < 6) {
-                                   displayToastMessage(
-                                   "Password must be atleast 6 Characters.", context);
-                                   } else {
-                                    registerNewUser(context);
-              }
-            
-
-                                      
-
+                                        displayToastMessage(
+                                            "Email address is not Valid.",
+                                            context);
+                                      } else if (password.length < 6) {
+                                        displayToastMessage(
+                                            "Password must be atleast 6 Characters.",
+                                            context);
+                                      } else {
+                                        registerNewUser(context);
+                                      }
                                     },
                                     child: Container(
                                       margin: EdgeInsets.only(
@@ -182,7 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget component(
-      IconData icon, String hintText, bool isPassword, bool isEmail) {
+      IconData icon, String hintText, bool isPassword, bool isEmail,bool isPhone) {
     Size size = MediaQuery.of(context).size;
 
     return Container(
@@ -204,13 +216,19 @@ class _SignUpPageState extends State<SignUpPage> {
                   email = val;
                 });
               }
-            : (val) {
-                setState(() {
-                  password = val;
-                });
-              },
+            : isPassword
+                ? (val) {
+                    setState(() {
+                      password = val;
+                    });
+                  }
+                : (val) {
+                    setState(() {
+                      phone = val;
+                    });
+                  },
         obscureText: isPassword,
-        keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
+        keyboardType: isEmail ? TextInputType.emailAddress :isPhone?TextInputType.phone: TextInputType.text,
         decoration: InputDecoration(
           prefixIcon: Icon(
             icon,
@@ -240,57 +258,53 @@ class MyBehavior extends ScrollBehavior {
   }
 }
 
-
 // Firebase sign up
 
-  
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  void registerNewUser(BuildContext context) async {
-    
-          ProgressDialog(
-            message: "Registering, Please wait...",
-          );
-        
+void registerNewUser(BuildContext context) async {
+  ProgressDialog(
+    message: "Registering, Please wait...",
+  );
 
-    final User firebaseUser = (await _firebaseAuth
-            .createUserWithEmailAndPassword(
-                email: email,
-                password: password,
-                )
-            .catchError((errMsg) {
-      Navigator.pop(context);
-      displayToastMessage("Error: " + errMsg.toString(), context);
-    }))
-        .user;
+  final User firebaseUser = (await _firebaseAuth
+          .createUserWithEmailAndPassword(
+    email: email,
+    password: password,
+  )
+          .catchError((errMsg) {
+    Navigator.pop(context);
+    displayToastMessage("Error: " + errMsg.toString(), context);
+  }))
+      .user;
 
-    if (firebaseUser != null) //user created
-    {
-      //save user info to database
-      
-        CollectionReference users = FirebaseFirestore.instance.collection('users');
+  if (firebaseUser != null) //user created
+  {
+    //save user info to database
 
-      users
-          .add({
-        "email": email.trim(),
-        "password": password,
-       
-          })
-          .then((value) => print("student added"))
-          .catchError((error) => print("Failed to add student: $error"));
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-      // usersRef.child(firebaseUser.uid).set(userDataMap);
-      displayToastMessage(
-          "Congratulations, your account has been created.", context);
+    users
+        .add({
+          "email": email.trim(),
+          "phone": phone,
+          "password": password,
+        })
+        .then((value) => print("user added sucessfully "))
+        .catchError((error) => print("Failed to add user: $error"));
 
-      Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: ((context) => const CustomBottomNavigation())));
-    } else {
-      Navigator.pop(context);
-      //error occured - display error msg
-      displayToastMessage("New user account has not been Created.", context);
-    }
+    // usersRef.child(firebaseUser.uid).set(userDataMap);
+    displayToastMessage(
+        "Congratulations, your account has been created.", context);
+
+    Navigator.pushNamed(context, '/home', arguments: {});
+  } else {
+    Navigator.pop(context);
+    //error occured - display error msg
+    displayToastMessage("New user account has not been Created.", context);
   }
-  displayToastMessage(String message, BuildContext context) {
+}
+
+displayToastMessage(String message, BuildContext context) {
   Fluttertoast.showToast(msg: message);
 }

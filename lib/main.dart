@@ -29,12 +29,17 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (BuildContext context) => AppData(),
       child: MaterialApp(
+          initialRoute: '/',
+          routes: {
+            '/' :(context) => const GetStartedPage(),
+            '/home':(context) => const CustomBottomNavigation()
+          },
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: GetStartedPage()),
-    );
+         
+    ));
   }
 }
