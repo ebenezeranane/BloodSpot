@@ -271,7 +271,7 @@ class MapSampleState extends State<MapSample> {
                                               
                                     Provider.of<AppData>(context).pickUpLocation != null
                                     ? Provider.of<AppData>(context).pickUpLocation.placeName
-                                    : "Add Home",
+                                    : "Add Hospital",
                               
                                               style: const TextStyle(
                                                   fontSize: 13,
@@ -282,7 +282,7 @@ class MapSampleState extends State<MapSample> {
                                             const Padding(
                                                 padding:
                                                     EdgeInsets.only(top: 20)),
-                                            const Text("Health Center"),
+                                            const Text("Nearby Hospital "),
                                             const Padding(
                                                 padding:
                                                     EdgeInsets.only(top: 2)),

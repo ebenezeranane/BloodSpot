@@ -3,6 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatelessWidget {
+
+//   Future getDocs() async {
+//   QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection("collection").
+//   for (int i = 0; i < querySnapshot.docs.length; i++) {
+//     var a = querySnapshot.docs[i];
+//     print(a.documentID);
+//   }
+// }
   final String name;
   final String email;
   final String image;
