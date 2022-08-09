@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
               child: Column(
             children: [
               Customappbar(
-                  userName: "Jared Prishska Albert",
+                  userName: "",
                   userImage: "https://i.imgur.com/kQbx35z.jpg"),
               Container(
                 width: MediaQuery.of(context).size.width / 2,
@@ -57,53 +57,43 @@ class _HomeState extends State<Home> {
                 scrollDirection: Axis.horizontal,
                 children: const [
                   MyCard(
-                    age: 10,
-                    name: "Jared Farad",
+                   
                     day: "Today",
                     distance: 11.5,
-                    url: "https:ww.google.com",
-                    gender: "Male",
-                    mainText: "Donate Blood and\nBecome a Superhero",
-                    urlshare: 'www.google.com',
+                   
+                    image: 'assets/images/blood_donation.jpeg',
                   ),
                   MyCard(
-                    age: 15,
-                    name: "Bill Clinton",
+                    
                     day: "Yesterday",
                     distance: 2,
-                    url: "https:www.facebook.com",
-                    gender: "Female",
-                    mainText: "Help a Brother\nOut Okay?",
-                    urlshare: 'www.google.com',
+                   
+                    image: 'assets/images/blood_donation.jpeg',
+
                   ),
                   MyCard(
-                    age: 10,
-                    name: "Jared Farad",
+                    
                     day: "Today",
                     distance: 11.5,
-                    url: "https:ww.google.com",
-                    gender: "Male",
-                    mainText: "Donate Blood and\nBecome a Superhero",
+                   
+                    image: 'assets/images/blood_donation.jpeg',
                     urlshare: 'www.google.com',
                   ),
                   MyCard(
-                    age: 15,
-                    name: "Bill Clinton",
+                    
                     day: "Yesterday",
                     distance: 2,
-                    url: "https:www.facebook.com",
-                    gender: "Female",
-                    mainText: "Help a Brother\nOut Okay?",
+                    
+                    image: 'assets/images/blood_donation.jpeg',
+
                     urlshare: 'www.facebook.com',
                   ),
                   MyCard(
-                    age: 10,
-                    name: "Jared Farad",
+                    
                     day: "Today",
                     distance: 11.5,
-                    url: "https:ww.google.com",
-                    gender: "Male",
-                    mainText: "Donate Blood and\nBecome a Superhero",
+                   
+                    image: 'assets/images/blood_donation.jpeg',
                     urlshare: 'www.instagram.com',
                   ),
                 ],

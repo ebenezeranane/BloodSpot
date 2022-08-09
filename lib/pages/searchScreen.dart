@@ -35,17 +35,17 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //Find Donor Text
+          //Find Hospital Text
           Container(
             margin: const EdgeInsets.only(bottom: 10, top: 20),
             child: const Text(
-              "Find Donor",
+              "Find Hospital",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
-          //Search for Blood Donors Text
+          //Search for  Hospitals Text
           const Text(
-            'Search for Blood Donors around You',
+            'Search for  Hospitals around You',
           ),
           const Padding(padding: EdgeInsets.only(top: 20)),
           //Find Location Text
@@ -102,7 +102,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     },
                     controller: dropOffTextEditingController,
                     decoration: const InputDecoration(
-                      hintText: "Choose Your Hospital Location",
+                      hintText: "Choose Your  Location",
                       border: InputBorder.none,
                       isDense: true,
                       filled: true,

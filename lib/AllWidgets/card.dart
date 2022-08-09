@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -7,24 +7,14 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyCard extends StatelessWidget {
-  final int age;
-  final String name;
+  final String image;
+  final String title;
   final String day;
   final double distance;
-  final String url;
   final String urlshare;
-  final String gender;
-  final String mainText;
+  final String hospitalName;
   const MyCard(
-      {Key key,
-       this.age,
-       this.name,
-       this.day,
-       this.distance,
-       this.url,
-       this.gender,
-       this.mainText,
-       this.urlshare})
+      {Key key, this.day, this.distance, this.image, this.urlshare, this.title, this.hospitalName})
       : super(key: key);
 
   @override
@@ -60,9 +50,8 @@ class MyCard extends StatelessWidget {
                                         topRight: Radius.circular(10.0),
                                         topLeft: Radius.circular(10)),
                                     child: Image.asset(
-                                      'assets/images/blood_donation.jpeg',
+                                      image,
                                       fit: BoxFit.fill,
-                                     
                                     ),
                                   ),
                                 )),
@@ -113,7 +102,7 @@ class MyCard extends StatelessWidget {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(mainText,
+                                                        Text(title,
                                                             style: const TextStyle(
                                                                 fontSize: 20,
                                                                 fontWeight:
@@ -177,7 +166,7 @@ class MyCard extends StatelessWidget {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        gender,
+                                                        '',
                                                         style: const TextStyle(
                                                             fontSize: 15,
                                                             color:
@@ -214,7 +203,7 @@ class MyCard extends StatelessWidget {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        "Age: $age",
+                                                        "",
                                                         style: const TextStyle(
                                                             fontSize: 15,
                                                             color:
@@ -280,9 +269,7 @@ class MyCard extends StatelessWidget {
                                                         Icons.location_on,
                                                         color: Colors.grey),
                                                     InkWell(
-                                                      onTap: () {
-                                                        linkto(url);
-                                                      },
+                                                      onTap: () {},
                                                       child: Container(
                                                         padding:
                                                             const EdgeInsets
@@ -377,7 +364,7 @@ class MyCard extends StatelessWidget {
                                                                               114,
                                                                               114,
                                                                               114))),
-                                                                  Text(name,
+                                                                  Text(hospitalName,
                                                                       style: const TextStyle(
                                                                           fontSize:
                                                                               20,
@@ -446,7 +433,7 @@ class MyCard extends StatelessWidget {
                                                                     size: 20,
                                                                   ),
                                                                   Text(
-                                                                    'Settings',
+                                                                    '',
                                                                     style: TextStyle(
                                                                         fontSize:
                                                                             15,
