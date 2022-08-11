@@ -70,7 +70,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
                 ),
                 GButton(
                   icon: LineIcons.heart,
-                  text: 'Donate',
+                  text: 'Request',
                 ),
                 // GButton(
                 //   icon: LineIcons.search,

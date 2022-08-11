@@ -6,29 +6,6 @@ import '../../AllWidgets/card.dart';
 
 List<GetCampaign> campaigns = [];
 
-// get data from Firebase
-// void initFirebase() {
-//   FirebaseFirestore.instance
-//       .collection("hospitals_db")
-//       .get()
-//       .then((querySnapshot) {
-//     for (var result in querySnapshot.docs) {
-//       FirebaseFirestore.instance
-//           .collection("hospitals_db")
-//           .doc(result.id)
-//           .collection("donation_campaigns")
-//           .get()
-//           .then((querySnapshot) {
-//         for (var result in querySnapshot.docs) {
-//           print(result.data());
-//           print(result['posted_by']);
-
-//         }
-//       });
-//     }
-//   });
-// }
-
 class GetCampaign extends StatelessWidget {
   final String documentId;
 

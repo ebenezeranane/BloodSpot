@@ -72,13 +72,11 @@ class _SettingsState extends State<Settings> {
                 name: "Andries Grootnook",
                 email: "grrotnookA@gmail.com",
                 image: "https://i.imgur.com/8CVSH15.jpg",
-                phoneNumber: 0205444117,
-                weight: 66,
-                height: 176,
+                phoneNumber: 7678678678678,
+                weight: "33",
+                height: "23",
                 blood: "A+(Positive)",
                 gender: "Male",
-                birthDay: 05,
-                birthMonth: "June",
-                birthYear: 1997)));
+                )));
   }
 }
