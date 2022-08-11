@@ -7,14 +7,23 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyCard extends StatelessWidget {
-  final String image;
+  final String image;                                                                                                                                                                   
   final String title;
   final String day;
-  final double distance;
+  final String distance;
   final String urlshare;
+  final String time;
+
   final String hospitalName;
   const MyCard(
-      {Key key, this.day, this.distance, this.image, this.urlshare, this.title, this.hospitalName})
+      {Key key,
+      this.day,
+      this.distance,
+      this.image,
+      this.urlshare,
+      this.title,
+      this.hospitalName,
+      this.time})
       : super(key: key);
 
   @override
@@ -166,7 +175,7 @@ class MyCard extends StatelessWidget {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        '',
+                                                        time,
                                                         style: const TextStyle(
                                                             fontSize: 15,
                                                             color:
@@ -203,7 +212,7 @@ class MyCard extends StatelessWidget {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        "",
+                                                        " aa",
                                                         style: const TextStyle(
                                                             fontSize: 15,
                                                             color:
@@ -364,7 +373,8 @@ class MyCard extends StatelessWidget {
                                                                               114,
                                                                               114,
                                                                               114))),
-                                                                  Text(hospitalName,
+                                                                  Text(
+                                                                      hospitalName,
                                                                       style: const TextStyle(
                                                                           fontSize:
                                                                               20,
@@ -380,72 +390,7 @@ class MyCard extends StatelessWidget {
                                                             )
                                                           ],
                                                         ),
-                                                        InkWell(
-                                                          onTap: () {},
-                                                          child: Container(
-                                                            margin:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    right:
-                                                                        10.0),
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height *
-                                                                .05,
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                .25,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8),
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                            child: Container(
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            5)),
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        23,
-                                                                        182,
-                                                                        144),
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceEvenly,
-                                                                children: const [
-                                                                  Icon(
-                                                                    Icons.check,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    size: 20,
-                                                                  ),
-                                                                  Text(
-                                                                    '',
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            15,
-                                                                        color: Colors
-                                                                            .white),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                      ]
                                                     ),
                                                   ],
                                                 ),

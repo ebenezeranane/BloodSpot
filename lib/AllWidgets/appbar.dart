@@ -59,8 +59,8 @@ class Customappbar extends StatelessWidget {
                       bottomRight: Radius.circular(15),
                     ),
                     child:
-                        //Image.network(userImage.toString(), fit: BoxFit.cover),
-                        Image.asset('assets/images/1.jpg'),
+                        // Image.network(userImage.toString(), fit: BoxFit.cover),
+                        Image.asset('assets/images/user.png',fit: BoxFit.cover,),
                   ),
                 ),
                 Positioned(

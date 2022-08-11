@@ -268,15 +268,7 @@ void login(BuildContext context) async {
 
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-    users
-        .add({
-          "email": email.trim(),
-          "password": password,
-        })
-        .then((value) => print("student added"))
-        .catchError((error) => print("Failed to add student: $error"));
-
-    // usersRef.child(firebaseUser.uid).set(userDataMap);
+   
     displayToastMessage("You have logged in successfully.", context);
 
     Navigator.pushReplacement(context,

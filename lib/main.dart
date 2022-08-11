@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/' :(context) => const GetStartedPage(),
+            '/' :(context) => const CustomBottomNavigation(),
             '/home':(context) => const CustomBottomNavigation()
           },
           debugShowCheckedModeBanner: false,
