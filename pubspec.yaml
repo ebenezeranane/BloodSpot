@@ -50,6 +50,7 @@ dependencies:
   url_launcher: ^6.1.5
   share_plus: ^4.0.10
   flutter_svg: ^1.1.1+1
+  dropdown_button2: ^1.7.2
   
 
 

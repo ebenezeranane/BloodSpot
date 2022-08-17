@@ -7,7 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyCard extends StatelessWidget {
-  final String image;                                                                                                                                                                   
+  final String image;
   final String title;
   final String day;
   final String distance;
@@ -111,18 +111,23 @@ class MyCard extends StatelessWidget {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(title,
-                                                            style: const TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        200,
-                                                                        79,
-                                                                        78,
-                                                                        78))),
+                                                        Container(
+                                                          child: Text(title,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              style: const TextStyle(
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          200,
+                                                                          79,
+                                                                          78,
+                                                                          78))),
+                                                        ),
                                                         const SizedBox(
                                                           height: 5,
                                                         ),
@@ -321,77 +326,79 @@ class MyCard extends StatelessWidget {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            //profile logo
-                                                            Container(
-                                                              margin:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 15),
-                                                              child:
-                                                                  CircleAvatar(
-                                                                radius: 25,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              //profile logo
+                                                              Container(
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            15),
                                                                 child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              50.0),
-                                                                  child: Image
-                                                                      .asset(
-                                                                    'assets/images/1.jpg',
+                                                                    CircleAvatar(
+                                                                  radius: 25,
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            50.0),
+                                                                    child: Image
+                                                                        .asset(
+                                                                      'assets/images/1.jpg',
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
 
-                                                            Container(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 5),
-                                                              child: Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  const Text(
-                                                                      "Posted by",
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              15,
-                                                                          color: Color.fromARGB(
-                                                                              255,
-                                                                              114,
-                                                                              114,
-                                                                              114))),
-                                                                  Text(
-                                                                      hospitalName,
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              20,
-                                                                          fontWeight: FontWeight
-                                                                              .bold,
-                                                                          color: Color.fromARGB(
-                                                                              255,
-                                                                              42,
-                                                                              41,
-                                                                              41))),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ]
-                                                    ),
+                                                              Container(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            5),
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    const Text(
+                                                                        "Posted by",
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                15,
+                                                                            color: Color.fromARGB(
+                                                                                255,
+                                                                                114,
+                                                                                114,
+                                                                                114))),
+                                                                    Text(
+                                                                        hospitalName,
+                                                                        maxLines:
+                                                                            null,
+                                                                        style: const TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight: FontWeight
+                                                                                .bold,
+                                                                            color: Color.fromARGB(
+                                                                                255,
+                                                                                42,
+                                                                                41,
+                                                                                41))),
+                                                                  ],
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ]),
                                                   ],
                                                 ),
                                               ),
