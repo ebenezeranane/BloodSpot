@@ -462,6 +462,7 @@ Future _shareContent(urlshare) async {
 Future linkto(String url) async {
   //const url = 'https://blog.logrocket.com';
   if (await canLaunchUrl(Uri.parse(url))) {
+    // ignore: deprecated_member_use
     await launch(url, forceWebView: true); //forceWebView is true now
   } else {
     throw 'Could not launch $url';

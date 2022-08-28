@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:bloodspot/AllWidgets/submitPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
@@ -48,8 +47,8 @@ class MapSampleState extends State<MapSample> {
     newGoogleMapController
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
-    String address =
-        await AssistantMethods.searchCoordinateAddress(position, context);
+    // String address =
+    //     await AssistantMethods.searchCoordinateAddress(position, context);
     // print("This is your Address :: " + address);
   }
 
@@ -397,10 +396,10 @@ class MapSampleState extends State<MapSample> {
     pLineCoordinates.clear();
 
     if (decodedPolyLinePointsResult.isNotEmpty) {
-      decodedPolyLinePointsResult.forEach((PointLatLng pointLatLng) {
+      for (var pointLatLng in decodedPolyLinePointsResult) {
         pLineCoordinates
             .add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
-      });
+      }
     }
 
     polylineSet.clear();

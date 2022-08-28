@@ -12,28 +12,26 @@ class MyWidget extends StatelessWidget {
   final String blood;
   final String gender;
 
-  const MyWidget(
-      {Key key,
-      this.name,
-      this.email,
-      this.image,
-      this.phoneNumber,
-      this.weight,
-      this.height,
-      this.blood,
-      this.gender,
-    })
-      : super(key: key);
+  const MyWidget({
+    Key key,
+    this.name,
+    this.email,
+    this.image,
+    this.phoneNumber,
+    this.weight,
+    this.height,
+    this.blood,
+    this.gender,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     String userName;
-   
 
     FirebaseAuth _auth = FirebaseAuth.instance;
     CollectionReference user = FirebaseFirestore.instance.collection('users');
 
-     // get user  from email
+    // get user  from email
     String email = _auth.currentUser.email;
     int indexOfAt = email.indexOf('@');
     String getUserFromEmail = email.substring(0, indexOfAt);
@@ -44,11 +42,11 @@ class MyWidget extends StatelessWidget {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return const Text("Something went wrong");
         }
 
         if (snapshot.hasData && !snapshot.data.exists) {
-          return Text("Document does not exist");
+          return const Text("Document does not exist");
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
@@ -190,19 +188,15 @@ class MyWidget extends StatelessWidget {
                                         ),
                                         Expanded(
                                           flex: 7,
-                                          child: Container(
-                                            //color: Colors.pink,
-                                            //padding: const EdgeInsets.all(8),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                const Text("Blood Group"),
-                                                Text(data['blood_group'])
-                                              ],
-                                            ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text("Blood Group"),
+                                              Text(data['blood_group'])
+                                            ],
                                           ),
                                         ),
                                       ],
@@ -439,7 +433,8 @@ class MyWidget extends StatelessWidget {
                                     //color: Colors.tealAccent,
                                     padding: const EdgeInsets.all(10),
                                     child: Center(
-                                      child: Text(data['height'],
+                                      child: Text(
+                                        data['height'],
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -499,7 +494,8 @@ class MyWidget extends StatelessWidget {
                                     //color: Colors.tealAccent,
                                     padding: const EdgeInsets.all(5),
                                     child: Center(
-                                      child: Text(data['weight'],
+                                      child: Text(
+                                        data['weight'],
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),

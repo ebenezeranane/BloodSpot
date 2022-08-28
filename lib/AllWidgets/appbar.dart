@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Customappbar extends StatelessWidget {
+class CustomAppbar extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String userName;
   final String userImage;
-  Customappbar({Key key, this.userName, this.userImage}) : super(key: key);
+  CustomAppbar({Key key, this.userName, this.userImage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
