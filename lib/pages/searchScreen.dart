@@ -35,84 +35,136 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //Find Hospital Text
           Container(
-            margin: const EdgeInsets.only(bottom: 10, top: 20),
-            child: const Text(
+            child: IconButton(
+              icon: Icon(Icons.arrow_back, size: 30),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+
+          //Find Hospital Text
+          const Padding(
+            padding: EdgeInsets.only(top: 10, bottom: 15, left: 8.0),
+            child: Text(
               "Find Hospital",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           //Search for  Hospitals Text
-          const Text(
-            'Search for  Hospitals around You',
+          const Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Text(
+              'Search for  Hospitals around You',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+            ),
           ),
           const Padding(padding: EdgeInsets.only(top: 20)),
-          //Find Location Text
-          const Text(
-            "Find Location",
-            style: TextStyle(),
-          ),
           const Padding(padding: EdgeInsets.only(top: 10)),
           //Input Section
 
-          Card(
-            color: Colors.transparent,
-            elevation: 20,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.amber, borderRadius: BorderRadius.circular(20)),
-              padding: EdgeInsets.only(left: 20),
-              height: MediaQuery.of(context).size.height * 0.07,
-              child: Row(
-                children: [
-                  Flexible(
-                      child: TextField(
-                    controller: pickUpTextEditingController,
-                    decoration: const InputDecoration(
-                      hintText: "Current Location",
-                      border: InputBorder.none,
-                      filled: true,
-                      isDense: true,
-                      contentPadding:
-                          EdgeInsets.only(left: 11.0, top: 8.0, bottom: 8.0),
-                    ),
-                  ))
-                ],
-              ),
+          const Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Text(
+              "Where are you going?",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
             ),
           ),
-          const Padding(padding: EdgeInsets.only(top: 20)),
-          Card(
-            color: Colors.transparent,
-            elevation: 20,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: EdgeInsets.only(left: 20),
-              height: MediaQuery.of(context).size.height * 0.07,
-              child: Row(
-                children: [
-                  Flexible(
-                      child: TextField(
-                    onChanged: (val) {
-                      findPlace(val);
-                    },
-                    controller: dropOffTextEditingController,
-                    decoration: const InputDecoration(
-                      hintText: "Choose Your  Location",
-                      border: InputBorder.none,
-                      isDense: true,
-                      filled: true,
-                      contentPadding:
-                          EdgeInsets.only(left: 11.0, top: 8.0, bottom: 8.0),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(children: const [
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Icon(
+                      Icons.location_on,
+                      size: 20,
+                      color: Color.fromARGB(255, 92, 142, 228),
                     ),
-                  ))
-                ],
+                  ),
+                  SizedBox(
+                    height: 75,
+                    child: VerticalDivider(
+                      color: Color.fromARGB(255, 92, 142, 228),
+                      thickness: 2,
+                    ),
+                  ),
+                  Icon(
+                    Icons.circle_outlined,
+                    size: 20,
+                    color: Color.fromARGB(255, 92, 142, 228),
+                  ),
+                ]),
               ),
-            ),
+              Expanded(
+                flex: 9,
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: const [
+                          BoxShadow(color: Colors.blueGrey, blurRadius: 2),
+                        ],
+                      ),
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      child: Row(
+                        children: [
+                          Flexible(
+                              child: TextField(
+                            controller: pickUpTextEditingController,
+                            decoration: const InputDecoration(
+                              fillColor: Colors.white,
+                              hintText: "Current Location",
+                              border: InputBorder.none,
+                              filled: true,
+                              isDense: true,
+                              contentPadding: EdgeInsets.all(10.0),
+                            ),
+                          ))
+                        ],
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.symmetric(vertical: 15)),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: const [
+                          BoxShadow(color: Colors.blueGrey, blurRadius: 2),
+                        ],
+                      ),
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      child: Row(
+                        children: [
+                          Flexible(
+                              child: TextField(
+                            onChanged: (val) {
+                              findPlace(val);
+                            },
+                            controller: dropOffTextEditingController,
+                            decoration: const InputDecoration(
+                              hintText: "Choose Your  Location",
+                              border: InputBorder.none,
+                              fillColor: Colors.white,
+                              isDense: true,
+                              filled: true,
+                              contentPadding: EdgeInsets.all(10.0),
+                            ),
+                          ))
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           //tile for predictions
           const SizedBox(
