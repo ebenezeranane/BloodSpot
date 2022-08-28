@@ -1,3 +1,6 @@
+// ignore_for_file: file_names
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +29,9 @@ class _SearchScreenState extends State<SearchScreen> {
     String placeAddress =
         Provider.of<AppData>(context).pickUpLocation.placeName ?? "";
     pickUpTextEditingController.text = placeAddress;
-    print(placeAddress);
+    if (kDebugMode) {
+      print(placeAddress);
+    }
 
     return Scaffold(
         body: SafeArea(
@@ -35,13 +40,11 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, size: 30),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+          IconButton(
+            icon: const Icon(Icons.arrow_back, size: 30),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
 
           //Find Hospital Text
@@ -248,52 +251,50 @@ class PredictionTile extends StatelessWidget {
       onPressed: () {
         getPlaceAddressDetails(placePredictions.place_id, context);
       },
-      child: Container(
-        child: Column(
-          children: [
-            const SizedBox(
-              width: 10.0,
-            ),
-            Row(
-              children: [
-                const Icon(Icons.add_location),
-                const SizedBox(
-                  width: 14.0,
+      child: Column(
+        children: [
+          const SizedBox(
+            width: 10.0,
+          ),
+          Row(
+            children: [
+              const Icon(Icons.add_location),
+              const SizedBox(
+                width: 14.0,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      placePredictions.main_text,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 16.0),
+                    ),
+                    const SizedBox(
+                      height: 2.0,
+                    ),
+                    Text(
+                      placePredictions.secondary_text,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          const TextStyle(fontSize: 12.0, color: Colors.grey),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 8.0,
-                      ),
-                      Text(
-                        placePredictions.main_text,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontSize: 16.0),
-                      ),
-                      const SizedBox(
-                        height: 2.0,
-                      ),
-                      Text(
-                        placePredictions.secondary_text,
-                        overflow: TextOverflow.ellipsis,
-                        style:
-                            const TextStyle(fontSize: 12.0, color: Colors.grey),
-                      ),
-                      const SizedBox(
-                        height: 8.0,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              width: 10.0,
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            width: 10.0,
+          ),
+        ],
       ),
     );
   }

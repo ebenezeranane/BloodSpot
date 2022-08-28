@@ -1,4 +1,4 @@
-import 'dart:ui';
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:bloodspot/AllWidgets/request.dart';
 import 'package:flutter/material.dart';
@@ -53,10 +53,10 @@ void SubmitPage(BuildContext ctx) {
                       children: [
                         //Full Name text
                         Container(
-                          padding: EdgeInsets.only(left: 10.0, top: 50.0),
+                          padding: const EdgeInsets.only(left: 10.0, top: 50.0),
                           height: 30,
                           width: double.infinity,
-                          child: Text(
+                          child: const Text(
                             "Full Name",
                           ),
                         ),
@@ -75,10 +75,10 @@ void SubmitPage(BuildContext ctx) {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: 10.0, top: 10.0),
+                          padding: const EdgeInsets.only(left: 10.0, top: 10.0),
                           height: 30,
                           width: double.infinity,
-                          child: Text(
+                          child: const Text(
                             "Gender",
                           ),
                         ),
@@ -97,10 +97,11 @@ void SubmitPage(BuildContext ctx) {
                           ),
                         ),
                         Container(
-                            padding: EdgeInsets.only(left: 10.0, top: 10.0),
+                            padding:
+                                const EdgeInsets.only(left: 10.0, top: 10.0),
                             height: 30,
                             width: double.infinity,
-                            child: Text(
+                            child: const Text(
                               "Blood Group",
                             )),
                         DropdownButtonFormField2(
@@ -155,10 +156,11 @@ void SubmitPage(BuildContext ctx) {
                           },
                         ),
                         Container(
-                            padding: EdgeInsets.only(left: 10.0, top: 10.0),
+                            padding:
+                                const EdgeInsets.only(left: 10.0, top: 10.0),
                             height: 30,
                             width: double.infinity,
-                            child: Text(
+                            child: const Text(
                               "Height",
                             )),
                         TextFormField(
@@ -176,10 +178,11 @@ void SubmitPage(BuildContext ctx) {
                           ),
                         ),
                         Container(
-                            padding: EdgeInsets.only(left: 10.0, top: 10.0),
+                            padding:
+                                const EdgeInsets.only(left: 10.0, top: 10.0),
                             height: 30,
                             width: double.infinity,
-                            child: Text(
+                            child: const Text(
                               "Weight",
                             )),
                         TextFormField(
@@ -196,7 +199,7 @@ void SubmitPage(BuildContext ctx) {
                             ),
                           ),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
 
                         Center(
                             child: ElevatedButton(

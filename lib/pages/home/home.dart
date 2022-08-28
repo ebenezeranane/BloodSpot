@@ -1,4 +1,3 @@
-import 'package:bloodspot/AllWidgets/progressDialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../AllWidgets/appbar.dart';
@@ -21,11 +20,11 @@ class GetCampaign extends StatelessWidget {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return const Text("Something went wrong");
         }
 
         if (snapshot.hasData && !snapshot.data.exists) {
-          return Text("Document does not exist");
+          return const Text("Document does not exist");
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
@@ -47,7 +46,6 @@ class GetCampaign extends StatelessWidget {
             height: 40,
             child: CircularProgressIndicator(
               color: Colors.deepPurple,
-              
             ),
           ),
         );
@@ -93,7 +91,7 @@ class _HomeState extends State<Home> {
           body: SafeArea(
               child: Column(
             children: [
-              Customappbar(userName: "", userImage: "assets/images/user.png"),
+              CustomAppbar(userName: "", userImage: "assets/images/user.png"),
               Container(
                 width: MediaQuery.of(context).size.width / 2,
                 margin: const EdgeInsets.only(bottom: 30),
