@@ -40,7 +40,7 @@ class MyWidget extends StatelessWidget {
     userName = getUserFromEmail;
 
     return FutureBuilder<DocumentSnapshot>(
-      future: user.doc('1CBqVwLthtGSpkniVfxv').get(),
+      future: user.doc(_auth.currentUser.uid).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -81,7 +81,7 @@ class MyWidget extends StatelessWidget {
                           height: 115,
                           width: 115,
                           child: CircleAvatar(
-                            backgroundImage: AssetImage("assets/images/1.jpg"),
+                            backgroundImage: AssetImage("assets/images/user.png"),
                           ),
                         )),
                       ),
@@ -154,9 +154,9 @@ class MyWidget extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: [
-                                                const Text("Gender"),
-                                                Text(data['gender']),
+                                              children: const [
+                                                Text("Gender"),
+                                                // Text(data['gender']),
                                               ],
                                             ),
                                           ),
@@ -200,7 +200,7 @@ class MyWidget extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 const Text("Blood Group"),
-                                                Text(data['blood_group'])
+                                                Text(data['bloodType'])
                                               ],
                                             ),
                                           ),
@@ -253,7 +253,7 @@ class MyWidget extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         const Text("Date of Birth"),
-                                        Text(data['birth_date']),
+                                        Text(data['date_of_birth']),
                                       ],
                                     ),
                                   ),
@@ -359,7 +359,6 @@ class MyWidget extends StatelessWidget {
                                 Expanded(
                                   flex: 4,
                                   child: Container(
-                                    //color: Colors.tealAccent,
                                     padding: const EdgeInsets.all(10),
                                     child: InkWell(
                                       onTap: () {},
@@ -439,7 +438,7 @@ class MyWidget extends StatelessWidget {
                                     //color: Colors.tealAccent,
                                     padding: const EdgeInsets.all(10),
                                     child: Center(
-                                      child: Text(data['height'],
+                                      child: Text(data['height']+'cm',
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -499,7 +498,7 @@ class MyWidget extends StatelessWidget {
                                     //color: Colors.tealAccent,
                                     padding: const EdgeInsets.all(5),
                                     child: Center(
-                                      child: Text(data['weight'],
+                                      child: Text(data['weight']+'kg',
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),

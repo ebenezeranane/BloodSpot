@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:bloodspot/AllWidgets/submitPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
@@ -91,7 +93,6 @@ class MapSampleState extends State<MapSample> {
   }
 
   Positioned mapTrackDetails(BuildContext context) {
-
     // get user  from email
     String userName;
     FirebaseAuth _auth = FirebaseAuth.instance;
@@ -99,7 +100,6 @@ class MapSampleState extends State<MapSample> {
     int indexOfAt = email.indexOf('@');
     String getUserFromEmail = email.substring(0, indexOfAt);
     userName = getUserFromEmail;
-
 
     return Positioned(
       child: Column(
@@ -170,11 +170,10 @@ class MapSampleState extends State<MapSample> {
               Card(
                 elevation: 50,
                 shadowColor: Colors.black,
-                //color: Colors.greenAccent[100],
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.40,
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
                         // USER IMAGE and details side
@@ -191,7 +190,7 @@ class MapSampleState extends State<MapSample> {
                                     width: 50,
                                     child: CircleAvatar(
                                       backgroundImage:
-                                          AssetImage("assets/images/1.jpg"),
+                                          AssetImage("assets/images/user.png"),
                                     ),
                                   ),
                                   Padding(
@@ -199,7 +198,7 @@ class MapSampleState extends State<MapSample> {
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children:  [
+                                      children: [
                                         Text(userName),
                                         const Text("")
                                       ],
@@ -220,7 +219,8 @@ class MapSampleState extends State<MapSample> {
                         ),
                         //Tracking side
                         Container(
-                          padding: const EdgeInsets.all(15),
+                          // padding: const EdgeInsets.all(15),
+                          height: MediaQuery.of(context).size.height * 0.19,
                           child: Row(
                             children: [
                               // Destination and WHere from
@@ -259,42 +259,64 @@ class MapSampleState extends State<MapSample> {
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(left: 20),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children:  [
-                                            const Text("Current Location"),
-                                            const Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 2)),
-                                            Text(
-                                              
-                                    Provider.of<AppData>(context).pickUpLocation != null
-                                    ? Provider.of<AppData>(context).pickUpLocation.placeName
-                                    : "Add Hospital",
-                              
-                                              style: const TextStyle(
-                                                  fontSize: 13,
-                                                  color: Colors.grey),
-                                            ),
-
-                                            
-                                            const Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 20)),
-                                            const Text("Nearby Hospital "),
-                                            const Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 2)),
-                                            Text(
-                                              Provider.of<AppData>(context).dropOffLocation != null
-                                              ? Provider.of<AppData>(context).dropOffLocation.placeName
-                                                : "",
-                                              style: const TextStyle(
-                                                  fontSize: 13,
-                                                  color: Colors.grey),
-                                            )
-                                          ],
+                                        child: Flexible(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text("Current Location"),
+                                              const Padding(
+                                                  padding:
+                                                      EdgeInsets.only(top: 2)),
+                                              SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.7,
+                                                child: Text(
+                                                  Provider.of<AppData>(context)
+                                                              .pickUpLocation !=
+                                                          null
+                                                      ? Provider.of<AppData>(
+                                                              context)
+                                                          .pickUpLocation
+                                                          .placeName
+                                                      : "Add Hospital",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: const TextStyle(
+                                                      fontSize: 13,
+                                                      color: Colors.grey),
+                                                ),
+                                              ),
+                                              const Padding(
+                                                  padding:
+                                                      EdgeInsets.only(top: 20)),
+                                              const Text("Nearby Hospital "),
+                                              const Padding(
+                                                  padding:
+                                                      EdgeInsets.only(top: 2)),
+                                              SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.7,
+                                                child: Text(
+                                                  Provider.of<AppData>(context)
+                                                              .dropOffLocation !=
+                                                          null
+                                                      ? Provider.of<AppData>(
+                                                              context)
+                                                          .dropOffLocation
+                                                          .placeName
+                                                      : "",
+                                                  style: const TextStyle(
+                                                      fontSize: 13,
+                                                      color: Colors.grey),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       )
                                     ],
@@ -305,11 +327,11 @@ class MapSampleState extends State<MapSample> {
                           ),
                         ),
                         const Spacer(),
+                          Provider.of<AppData>(context).dropOffLocation !=null?
                         InkWell(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SearchScreen())),
+                          onTap: () {
+                            SubmitPage(context);
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -331,7 +353,39 @@ class MapSampleState extends State<MapSample> {
                               ),
                             ),
                           ),
-                        ),
+                        ):
+                        
+
+
+
+                        InkWell(
+                          onTap: () {
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color.fromARGB(255, 173, 168, 166),
+                                  Color.fromARGB(255, 100, 92, 89)
+                                ],
+                              ),
+                            ),
+                            height: 50,
+                            width: double.infinity,
+                            child: const Center(
+                              child: Text(
+                                'Visit',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        )
+                        
+                       
+                        ,
                       ],
                     ),
                   ),

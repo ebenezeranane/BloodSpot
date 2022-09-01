@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../AllWidgets/profile.dart';
@@ -11,6 +12,8 @@ class Settings extends StatefulWidget {
   @override
   State<Settings> createState() => _SettingsState();
 }
+
+FirebaseAuth _auth = FirebaseAuth.instance;
 
 class _SettingsState extends State<Settings> {
   void editDialog() {
@@ -23,13 +26,13 @@ class _SettingsState extends State<Settings> {
               sigmaY: 5.0,
             ),
             child: AlertDialog(
-                title: const Text("Sorry"),
-                content: const Text(
-                    "No course material found for this programme and year."),
+                title: const Text("Log Out"),
+                content: const Text("Are you sure you want to log out?"),
                 actions: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      _auth.signOut();
+                      Navigator.pushReplacementNamed(context, '/');
                     },
                     child: const Text("OK"),
                   ),
@@ -51,7 +54,7 @@ class _SettingsState extends State<Settings> {
           actions: <Widget>[
             IconButton(
               icon: const Icon(
-                Icons.edit_outlined,
+                Icons.power_settings_new,
                 color: Colors.black,
               ),
               onPressed: () {
@@ -62,21 +65,21 @@ class _SettingsState extends State<Settings> {
           ],
           backgroundColor: Colors.white,
           title: const Text(
-            "Settings",
+            "Profile",
             style: TextStyle(color: Colors.black),
           ),
         ),
         //Body
         body: const SafeArea(
             child: MyWidget(
-                name: "Andries Grootnook",
-                email: "grrotnookA@gmail.com",
-                image: "https://i.imgur.com/8CVSH15.jpg",
-                phoneNumber: 7678678678678,
-                weight: "33",
-                height: "23",
-                blood: "A+(Positive)",
-                gender: "Male",
-                )));
+          name: "Andries Grootnook",
+          email: "grrotnookA@gmail.com",
+          image: "https://i.imgur.com/8CVSH15.jpg",
+          phoneNumber: 7678678678678,
+          weight: "33",
+          height: "23",
+          blood: "A+(Positive)",
+          gender: "Male",
+        )));
   }
 }

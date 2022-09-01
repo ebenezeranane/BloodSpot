@@ -1,10 +1,13 @@
 import 'package:bloodspot/AllWidgets/bottom_navigation.dart';
 import 'package:bloodspot/pages/Maps/map.dart';
+import 'package:bloodspot/pages/auth/admin_auth.dart';
+import 'package:bloodspot/pages/auth/choose_auth.dart';
 import 'package:bloodspot/pages/auth/login_page.dart';
 import 'package:bloodspot/pages/auth/signup_page.dart';
 import 'package:bloodspot/pages/get_started/get_started.dart';
 import 'package:bloodspot/pages/home/home.dart';
 import 'package:bloodspot/pages/searchScreen.dart';
+import 'package:bloodspot/pages/userProfileDetail.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +34,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/' :(context) => const CustomBottomNavigation(),
-            '/home':(context) => const CustomBottomNavigation()
+            '/' :(context) => ChooseAuth(),
+            '/adminlogin': (context) => AdminLoginPage(),
+            '/signup': ((context) => SignUpPage()),
+            '/home':(context) => const CustomBottomNavigation(),
+            '/profilepage':(context) => ProfileDetailsPage()
           },
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

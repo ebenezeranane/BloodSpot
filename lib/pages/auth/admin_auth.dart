@@ -1,4 +1,5 @@
-import 'package:bloodspot/pages/auth/login_page.dart';
+import 'package:bloodspot/AllWidgets/bottom_navigation.dart';
+import 'package:bloodspot/pages/auth/signup_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,19 +8,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../AllWidgets/bottom_navigation.dart';
 import '../../AllWidgets/progressDialog.dart';
 
-class SignUpPage extends StatefulWidget {
+class AdminLoginPage extends StatefulWidget {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _AdminLoginPageState createState() => _AdminLoginPageState();
 }
-
+ 
 String email = "";
 String password = "";
-String phone;
 
-class _SignUpPageState extends State<SignUpPage> {
+class _AdminLoginPageState extends State<AdminLoginPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -62,7 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       bottom: size.width * .1,
                                     ),
                                     child: Text(
-                                      'SIGN UP',
+                                      'ADMIN SIGN IN',
                                       style: TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.w600,
@@ -75,21 +74,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                     'Email...',
                                     false,
                                     true,
-                                    false
-                                  ),
-                                  component(
-                                    Icons.phone,
-                                    'Phone...',
-                                    false,
-                                    false,
-                                    true
                                   ),
                                   component(
                                     Icons.lock_outline,
                                     'Password...',
                                     true,
                                     false,
-                                    false
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -111,23 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                             },
                                         ),
                                       ),
-                                      RichText(
-                                        text: TextSpan(
-                                          text: 'Log In',
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap = () {
-                                              HapticFeedback.lightImpact();
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          LoginPage()));
-                                            },
-                                        ),
-                                      ),
+                                      
                                     ],
                                   ),
                                   SizedBox(height: size.width * .3),
@@ -137,9 +111,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                     onTap: () {
                                       HapticFeedback.lightImpact();
                                       Fluttertoast.showToast(
-                                        msg: 'Sign-Up button pressed',
+                                        msg: 'Sign-In button pressed',
                                       );
 
+                                      // validate and login
                                       if (!email.contains("@")) {
                                         displayToastMessage(
                                             "Email address is not Valid.",
@@ -149,7 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                             "Password must be atleast 6 Characters.",
                                             context);
                                       } else {
-                                        registerNewUser(context);
+                                        login(context);
                                       }
                                     },
                                     child: Container(
@@ -164,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: const Text(
-                                        'Continue To Profile',
+                                        'Sign-In',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -194,7 +169,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget component(
-      IconData icon, String hintText, bool isPassword, bool isEmail,bool isPhone) {
+      IconData icon, String hintText, bool isPassword, bool isEmail) {
     Size size = MediaQuery.of(context).size;
 
     return Container(
@@ -216,19 +191,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   email = val;
                 });
               }
-            : isPassword
-                ? (val) {
-                    setState(() {
-                      password = val;
-                    });
-                  }
-                : (val) {
-                    setState(() {
-                      phone = val;
-                    });
-                  },
+            : (val) {
+                setState(() {
+                  password = val;
+                });
+              },
         obscureText: isPassword,
-        keyboardType: isEmail ? TextInputType.emailAddress :isPhone?TextInputType.phone: TextInputType.text,
+        keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
         decoration: InputDecoration(
           prefixIcon: Icon(
             icon,
@@ -258,17 +227,16 @@ class MyBehavior extends ScrollBehavior {
   }
 }
 
-// Firebase sign up
-
+// Firebase login
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-void registerNewUser(BuildContext context) async {
-  ProgressDialog(
-    message: "Registering, Please wait...",
-  );
+void login(BuildContext context) async {
+  
+        ProgressDialog(message: "Please wait...",);
+      
 
   final User firebaseUser = (await _firebaseAuth
-          .createUserWithEmailAndPassword(
+          .signInWithEmailAndPassword(
     email: email,
     password: password,
   )
@@ -282,26 +250,17 @@ void registerNewUser(BuildContext context) async {
   {
     //save user info to database
 
-    DocumentReference<Map<String, dynamic>> users = FirebaseFirestore.instance.collection('users').doc(firebaseUser.uid);
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-    users
-        .set({
-          "email": email.trim(),
-          "phone": phone,
-          "password": password,
-        })
-        .then((value) => print("user added sucessfully "))
-        .catchError((error) => print("Failed to add user: $error"));
+   
+    displayToastMessage("You have logged in successfully.", context);
 
-    // usersRef.child(firebaseUser.uid).set(userDataMap);
-    // displayToastMessage(
-    //     "Congratulations, your account has been created.", context);
-
-    Navigator.pushNamed(context, '/profilepage', arguments: {});
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: ((context) => const CustomBottomNavigation())));
   } else {
     Navigator.pop(context);
     //error occured - display error msg
-    displayToastMessage("New user account has not been Created.", context);
+    displayToastMessage("Could not log in.Please try again!", context);
   }
 }
 

@@ -36,63 +36,7 @@ class Customappbar extends StatelessWidget {
                 ),
               ],
             ),
-            //profile logo
-            // Stack(
-            //   children: [
-            //     Container(
-            //       height: 60,
-            //       // padding: EdgeInsets.all(2),
-            //       decoration: BoxDecoration(
-            //         borderRadius: const BorderRadius.all(
-            //           Radius.circular(15),
-            //         ),
-            //         border: Border.all(
-            //           width: 1,
-            //           color: Colors.white,
-            //           style: BorderStyle.solid,
-            //         ),
-            //       ),
-            //       child: ClipRRect(
-            //         borderRadius: const BorderRadius.only(
-            //           topRight: Radius.circular(15),
-            //           topLeft: Radius.circular(15),
-            //           bottomRight: Radius.circular(15),
-            //         ),
-            //         child:
-            //             // Image.network(userImage.toString(), fit: BoxFit.cover),
-            //             Image.asset('assets/images/user.png',fit: BoxFit.cover,),
-            //       ),
-            //     ),
-            //     Positioned(
-            //       left: 0,
-            //       bottom: 0,
-            //       child: Container(
-            //         decoration: BoxDecoration(
-            //           shape: BoxShape.circle,
-            //           border: Border.all(
-            //             width: 1,
-            //             color: Colors.white,
-            //             style: BorderStyle.solid,
-            //           ),
-            //         ),
-            //         child: Container(
-            //           decoration: BoxDecoration(
-            //             shape: BoxShape.circle,
-            //             color: Colors.green,
-            //             // borderRadius: BorderRadius.all(
-            //             //   Radius.circular(10),
-            //             // ),
-            //             border: Border.all(
-            //               width: 3,
-            //               color: Colors.green,
-            //               style: BorderStyle.solid,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     )
-            //   ],
-            // ),
+            
           ]), // Row),,
           const Padding(
             padding: EdgeInsets.only(top: 5),
