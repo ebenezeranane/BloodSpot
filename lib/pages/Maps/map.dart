@@ -48,8 +48,8 @@ class MapSampleState extends State<MapSample> {
     newGoogleMapController
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
-    String address =
-        await AssistantMethods.searchCoordinateAddress(position, context);
+    // String address =
+    //     await AssistantMethods.searchCoordinateAddress(position, context);
     // print("This is your Address :: " + address);
   }
 
@@ -220,6 +220,7 @@ class MapSampleState extends State<MapSample> {
                         //Tracking side
                         Container(
                           // padding: const EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(15),
                           height: MediaQuery.of(context).size.height * 0.19,
                           child: Row(
                             children: [
@@ -327,65 +328,57 @@ class MapSampleState extends State<MapSample> {
                           ),
                         ),
                         const Spacer(),
-                          Provider.of<AppData>(context).dropOffLocation !=null?
-                        InkWell(
-                          onTap: () {
-                            SubmitPage(context);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Color.fromARGB(255, 255, 169, 143),
-                                  Color.fromARGB(255, 212, 46, 0)
-                                ],
+                        Provider.of<AppData>(context).dropOffLocation != null
+                            ? InkWell(
+                                onTap: () {
+                                  SubmitPage(context);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color.fromARGB(255, 255, 169, 143),
+                                        Color.fromARGB(255, 212, 46, 0)
+                                      ],
+                                    ),
+                                  ),
+                                  height: 50,
+                                  width: double.infinity,
+                                  child: const Center(
+                                    child: Text(
+                                      'Visit',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color.fromARGB(255, 173, 168, 166),
+                                        Color.fromARGB(255, 100, 92, 89)
+                                      ],
+                                    ),
+                                  ),
+                                  height: 50,
+                                  width: double.infinity,
+                                  child: const Center(
+                                    child: Text(
+                                      'Visit',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                            height: 50,
-                            width: double.infinity,
-                            child: const Center(
-                              child: Text(
-                                'Visit',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ):
-                        
-
-
-
-                        InkWell(
-                          onTap: () {
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Color.fromARGB(255, 173, 168, 166),
-                                  Color.fromARGB(255, 100, 92, 89)
-                                ],
-                              ),
-                            ),
-                            height: 50,
-                            width: double.infinity,
-                            child: const Center(
-                              child: Text(
-                                'Visit',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        )
-                        
-                       
-                        ,
                       ],
                     ),
                   ),
@@ -429,10 +422,10 @@ class MapSampleState extends State<MapSample> {
     pLineCoordinates.clear();
 
     if (decodedPolyLinePointsResult.isNotEmpty) {
-      decodedPolyLinePointsResult.forEach((PointLatLng pointLatLng) {
+      for (var pointLatLng in decodedPolyLinePointsResult) {
         pLineCoordinates
             .add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
-      });
+      }
     }
 
     polylineSet.clear();

@@ -112,7 +112,6 @@ class MyCard extends StatelessWidget {
                                                               .start,
                                                       children: [
                                                         Text(title,
-                                                           
                                                             style: const TextStyle(
                                                                 fontSize: 20,
                                                                 fontWeight:
@@ -127,6 +126,23 @@ class MyCard extends StatelessWidget {
                                                                 overflow:
                                                                     TextOverflow
                                                                         .clip)),
+                                                        Container(
+                                                          child: Text(title,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              style: const TextStyle(
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          200,
+                                                                          79,
+                                                                          78,
+                                                                          78))),
+                                                        ),
                                                         const SizedBox(
                                                           height: 5,
                                                         ),
@@ -379,6 +395,8 @@ class MyCard extends StatelessWidget {
                                                                                 114))),
                                                                     Text(
                                                                         hospitalName,
+                                                                        maxLines:
+                                                                            null,
                                                                         style: const TextStyle(
                                                                             fontSize:
                                                                                 20,
@@ -455,11 +473,10 @@ Future _shareContent(urlshare) async {
       subject: "Share this subject");
 }
 
-
-
 Future linkto(String url) async {
   //const url = 'https://blog.logrocket.com';
   if (await canLaunchUrl(Uri.parse(url))) {
+    // ignore: deprecated_member_use
     await launch(url, forceWebView: true); //forceWebView is true now
   } else {
     throw 'Could not launch $url';

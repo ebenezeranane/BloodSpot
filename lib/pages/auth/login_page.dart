@@ -11,6 +11,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../AllWidgets/progressDialog.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -41,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       const Expanded(
-                        child: const SizedBox(),
+                        child: SizedBox(),
                       ),
                       Expanded(
                         flex: 7,
@@ -247,9 +249,9 @@ class MyBehavior extends ScrollBehavior {
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 void login(BuildContext context) async {
-  
-        ProgressDialog(message: "Please wait...",);
-      
+  ProgressDialog(
+    message: "Please wait...",
+  );
 
   final User firebaseUser = (await _firebaseAuth
           .signInWithEmailAndPassword(
@@ -268,11 +270,12 @@ void login(BuildContext context) async {
 
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-   
     displayToastMessage("You have logged in successfully.", context);
 
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: ((context) => const CustomBottomNavigation())));
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: ((context) => const CustomBottomNavigation())));
   } else {
     Navigator.pop(context);
     //error occured - display error msg

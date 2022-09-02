@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+// ignore_for_file: deprecated_member_use, non_constant_identifier_names
+
+>>>>>>> d8363f0cb1a42eb6125a4313f37330a17538837f
 import 'package:flutter/material.dart';
 
 void RequestSucess(BuildContext ctx) {
@@ -26,7 +31,11 @@ void RequestSucess(BuildContext ctx) {
                         color: Colors.black)),
                 const SizedBox(height: 20),
                 const Text(
+<<<<<<< HEAD
                     "Your request has been sent to the nearest hospital",
+=======
+                    "Your request has been sent to the nearest blood donor",
+>>>>>>> d8363f0cb1a42eb6125a4313f37330a17538837f
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -98,4 +107,8 @@ void RequestFailed(BuildContext ctx) {
               ],
             ),
           ));
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d8363f0cb1a42eb6125a4313f37330a17538837f

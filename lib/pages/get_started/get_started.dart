@@ -24,16 +24,15 @@ class _GetStartedPageState extends State<GetStartedPage> {
         (index) => Container(
               margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 400,
                       child: Center(child: Image.asset(images[index])),
                     ),
 
-
-                     Center(
+                    Center(
                       child: Column(
                         children: const [
                           Text(
@@ -41,7 +40,6 @@ class _GetStartedPageState extends State<GetStartedPage> {
                             style: TextStyle(
                                 fontSize: 22, fontWeight: FontWeight.bold),
                           ),
-
                           Text(
                             'Simplify the process of blood donation and managing, helping people had never been such easy!',
                             textAlign: TextAlign.center,
@@ -50,14 +48,12 @@ class _GetStartedPageState extends State<GetStartedPage> {
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold),
                           ),
- 
                         ],
                       ),
                     ),
                     // const SizedBox(
                     //   height: 3,
                     // ),
-                   
                   ],
                 ),
               ),
@@ -111,10 +107,12 @@ class _GetStartedPageState extends State<GetStartedPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
-                            context, MaterialPageRoute(builder: (context)=>  SignUpPage()));
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpPage()));
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(0, 231, 12, 12),
+                          primary: const Color.fromARGB(0, 231, 12, 12),
                           shadowColor: Colors.transparent),
                       child: const Text('        LETS GO        '),
                     ),

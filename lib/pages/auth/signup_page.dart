@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:bloodspot/pages/auth/login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,8 +8,6 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../AllWidgets/bottom_navigation.dart';
 import '../../AllWidgets/progressDialog.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -42,7 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Column(
                     children: [
                       const Expanded(
-                        child: const SizedBox(),
+                        child: SizedBox(),
                       ),
                       Expanded(
                         flex: 7,
@@ -70,27 +70,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                       ),
                                     ),
                                   ),
-                                  component(
-                                    Icons.email_outlined,
-                                    'Email...',
-                                    false,
-                                    true,
-                                    false
-                                  ),
-                                  component(
-                                    Icons.phone,
-                                    'Phone...',
-                                    false,
-                                    false,
-                                    true
-                                  ),
-                                  component(
-                                    Icons.lock_outline,
-                                    'Password...',
-                                    true,
-                                    false,
-                                    false
-                                  ),
+                                  component(Icons.email_outlined, 'Email...',
+                                      false, true, false),
+                                  component(Icons.phone, 'Phone...', false,
+                                      false, true),
+                                  component(Icons.lock_outline, 'Password...',
+                                      true, false, false),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -193,8 +178,8 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget component(
-      IconData icon, String hintText, bool isPassword, bool isEmail,bool isPhone) {
+  Widget component(IconData icon, String hintText, bool isPassword,
+      bool isEmail, bool isPhone) {
     Size size = MediaQuery.of(context).size;
 
     return Container(
@@ -228,7 +213,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     });
                   },
         obscureText: isPassword,
-        keyboardType: isEmail ? TextInputType.emailAddress :isPhone?TextInputType.phone: TextInputType.text,
+        keyboardType: isEmail
+            ? TextInputType.emailAddress
+            : isPhone
+                ? TextInputType.phone
+                : TextInputType.text,
         decoration: InputDecoration(
           prefixIcon: Icon(
             icon,
