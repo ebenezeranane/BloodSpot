@@ -8,6 +8,12 @@ String selectedValue;
 FirebaseAuth _auth = FirebaseAuth.instance;
 CollectionReference blood = FirebaseFirestore.instance.collection('available_blood_types');
 
+
+final List<String> genderItems = [
+  'Male',
+  'Female',
+];
+
 final _formKey = GlobalKey<FormState>();
 
 void SubmitPage(BuildContext ctx) {
@@ -84,5 +90,4 @@ void SubmitPage(BuildContext ctx) {
             ),
           ),
         );
-          }));
-}
+          }));}

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:bloodspot/AllWidgets/submitPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
@@ -48,9 +47,8 @@ class MapSampleState extends State<MapSample> {
     newGoogleMapController
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
-    // String address =
-    //     await AssistantMethods.searchCoordinateAddress(position, context);
-    // print("This is your Address :: " + address);
+    String address =
+        await AssistantMethods.searchCoordinateAddress(position, context);
   }
 
   // ignore: prefer_const_declarations
@@ -254,12 +252,10 @@ class MapSampleState extends State<MapSample> {
                                           ],
                                         ),
                                       ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 10),
-                                      ),
+                                     
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(left: 20),
+                                            const EdgeInsets.only(left: 15),
                                         child: Flexible(
                                           child: Column(
                                             crossAxisAlignment:

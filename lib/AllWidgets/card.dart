@@ -126,23 +126,7 @@ class MyCard extends StatelessWidget {
                                                                 overflow:
                                                                     TextOverflow
                                                                         .clip)),
-                                                        Container(
-                                                          child: Text(title,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .clip,
-                                                              style: const TextStyle(
-                                                                  fontSize: 20,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color: Color
-                                                                      .fromARGB(
-                                                                          200,
-                                                                          79,
-                                                                          78,
-                                                                          78))),
-                                                        ),
+                                                       
                                                         const SizedBox(
                                                           height: 5,
                                                         ),
@@ -399,7 +383,7 @@ class MyCard extends StatelessWidget {
                                                                             null,
                                                                         style: const TextStyle(
                                                                             fontSize:
-                                                                                20,
+                                                                                18,
                                                                             fontWeight: FontWeight
                                                                                 .bold,
                                                                             color: Color.fromARGB(

@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
             '/signup': ((context) => SignUpPage()),
             '/home': (context) => const CustomBottomNavigation(),
             '/profilepage': (context) => ProfileDetailsPage(),
-            '/': (context) => SignUpPage(),
             '/home': (context) => const CustomBottomNavigation()
           },
           debugShowCheckedModeBanner: false,
