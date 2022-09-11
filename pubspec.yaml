@@ -52,6 +52,7 @@ dependencies:
   flutter_svg: ^1.1.1+1
   dropdown_button2: ^1.7.2
   font_awesome_flutter: ^10.1.0
+  crypt: ^4.2.1
   
 
 

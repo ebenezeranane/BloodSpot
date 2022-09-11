@@ -14,9 +14,10 @@ class AdminLoginPage extends StatefulWidget {
   @override
   _AdminLoginPageState createState() => _AdminLoginPageState();
 }
- 
+
 String email = "";
 String password = "";
+bool isAdmin = true;
 
 class _AdminLoginPageState extends State<AdminLoginPage> {
   @override
@@ -101,7 +102,6 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                                             },
                                         ),
                                       ),
-                                      
                                     ],
                                   ),
                                   SizedBox(height: size.width * .3),
@@ -231,9 +231,9 @@ class MyBehavior extends ScrollBehavior {
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 void login(BuildContext context) async {
-  
-        ProgressDialog(message: "Please wait...",);
-      
+  ProgressDialog(
+    message: "Please wait...",
+  );
 
   final User firebaseUser = (await _firebaseAuth
           .signInWithEmailAndPassword(
@@ -248,15 +248,21 @@ void login(BuildContext context) async {
 
   if (firebaseUser != null) //user created
   {
-    //save user info to database
-
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-   
-    displayToastMessage("You have logged in successfully.", context);
-
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: ((context) => const CustomBottomNavigation())));
+    // Check if user is admin
+    FirebaseFirestore.instance.collection("admins").get().then((querySnapshot) {
+      for (var result in querySnapshot.docs) {
+        if (firebaseUser.email == result['email']) {
+          displayToastMessage("You have logged in successfully.", context);
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: ((context) => const CustomBottomNavigation())));
+        } else {
+          Navigator.pop(context);
+           displayToastMessage("Admin Login failed .Please try again!", context);
+        }
+      }
+    });
   } else {
     Navigator.pop(context);
     //error occured - display error msg

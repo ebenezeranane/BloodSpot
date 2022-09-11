@@ -2,6 +2,7 @@
 
 import 'package:bloodspot/pages/auth/login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypt/crypt.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
@@ -271,13 +272,14 @@ void registerNewUser(BuildContext context) async {
   {
     //save user info to database
 
-    DocumentReference<Map<String, dynamic>> users = FirebaseFirestore.instance.collection('users').doc(firebaseUser.uid);
-
+    DocumentReference<Map<String, dynamic>> users =
+        FirebaseFirestore.instance.collection('users').doc(firebaseUser.uid);
+    // var hashed_password = Crypt.sha256(password);
     users
         .set({
           "email": email.trim(),
           "phone": phone,
-          "password": password,
+          
         })
         .then((value) => print("user added sucessfully "))
         .catchError((error) => print("Failed to add user: $error"));
