@@ -15,7 +15,9 @@ FirebaseAuth _auth = FirebaseAuth.instance;
 CollectionReference blood =
     FirebaseFirestore.instance.collection('available_blood_types');
 
-void SubmitPage(BuildContext ctx) {
+void SubmitPage(
+  BuildContext ctx,
+) {
   showModalBottomSheet(
       isScrollControlled: true,
       elevation: 5,
@@ -35,79 +37,28 @@ void SubmitPage(BuildContext ctx) {
             if (snapshot.connectionState == ConnectionState.done) {
               Map<String, dynamic> data =
                   snapshot.data.data() as Map<String, dynamic>;
-              if (Provider.of<AppData>(context).dropOffLocation != null &&
-                  Provider.of<AppData>(context).dropOffLocation.placeName ==
-                      "Komfo Anokye Teaching Hospital") {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 420,
-                      child: ListView.builder(
-                          itemCount: data['available_blood_types'].length,
-                          itemBuilder: (BuildContext context, index) {
-                            return Card(
-                              child: ListTile(
-                                title:
-                                    Text(data['available_blood_types'][index]),
-                                leading: const Icon(
-                                  Icons.bloodtype_rounded,
-                                  color: Colors.red,
-                                ),
-                                trailing: Container(
-                                  decoration: BoxDecoration(
-                                    color: Color.fromARGB(19, 39, 231, 65),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(5)),
-                                    border: Border.all(color: Colors.green),
-                                  ),
-                                  //padding: EdgeInsets.only(right: 10.0),
-                                  height:
-                                      MediaQuery.of(context).size.height * .05,
-                                  width:
-                                      MediaQuery.of(context).size.width * .25,
-                                  child: const Center(
-                                    child: Text(
-                                      'AVAILABLE',
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.green),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
-                    checkAdmin() == true
-                        ? Center(
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  RequestSucess(ctx);
-                                },
-                                child: Text('SUMBIT')),
-                          )
-                        : Center()
-                  ],
-                );
 
-                // KNUST HOSPITAL
+                  
 
-              } else {
+              for (int indice = 0; indice < data['bloods'].length; indice++) {
                 if (Provider.of<AppData>(context).dropOffLocation != null &&
                     Provider.of<AppData>(context).dropOffLocation.placeName ==
-                        "KNUST HOSPITAL") {
+                        data['bloods'][indice]['hospital_name']) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         height: 420,
                         child: ListView.builder(
-                            itemCount: data['available_blood_types'].length - 4,
+                            itemCount: data['bloods'][indice]
+                                    ['available_blood_types']['available_blood']
+                                .length,
                             itemBuilder: (BuildContext context, index) {
                               return Card(
                                 child: ListTile(
-                                  title: Text(
-                                      data['available_blood_types'][index]),
+                                  title: Text(data['bloods'][indice]
+                                          ['available_blood_types']
+                                      ['available_blood'][index]),
                                   leading: const Icon(
                                     Icons.bloodtype_rounded,
                                     color: Colors.red,
@@ -147,103 +98,38 @@ void SubmitPage(BuildContext ctx) {
                           : Center()
                     ],
                   );
-                } else {
-
-                  // KUMASI SOUTH HOSPITAL
-                  if (Provider.of<AppData>(context).dropOffLocation != null &&
-                      Provider.of<AppData>(context).dropOffLocation.placeName ==
-                          "Kumasi South Hospital") {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 420,
-                          child: ListView.builder(
-                              itemCount:
-                                  data['available_blood_types'].length - 2,
-                              itemBuilder: (BuildContext context, index) {
-                                return Card(
-                                  child: ListTile(
-                                    title: Text(
-                                        data['available_blood_types'][index]),
-                                    leading: const Icon(
-                                      Icons.bloodtype_rounded,
-                                      color: Colors.red,
-                                    ),
-                                    trailing: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color.fromARGB(19, 39, 231, 65),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5)),
-                                        border: Border.all(color: Colors.green),
-                                      ),
-                                      //padding: EdgeInsets.only(right: 10.0),
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              .05,
-                                      width: MediaQuery.of(context).size.width *
-                                          .25,
-                                      child: const Center(
-                                        child: Text(
-                                          'AVAILABLE',
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              color: Colors.green),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }),
-                        ),
-                        checkAdmin() == true
-                            ? Center(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      RequestSucess(ctx);
-                                    },
-                                    child: Text('SUMBIT')),
-                              )
-                            : Center()
-                      ],
-                    );
-                  }
-
-                  else{
-
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                         child: const Center(
-                          child: Text("BLOOD UNAVAILABLE FOR THIS HOSPITAL"),
-                         ),
-                        ),
-                        checkAdmin() == true
-                            ? Center(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      RequestSucess(ctx);
-                                    },
-                                    child: Text('SUMBIT')),
-                              )
-                            : Center()
-                      ],
-                    );
-
-                  }
                 }
-
-                
+                // } else {
+                //   return Column(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Container(
+                //         child: const Center(
+                //           child:
+                //               Text("BLOOD UNAVAILABLE FOR THIS HOSPITAL"),
+                //         ),
+                //       ),
+                //       checkAdmin() == true
+                //           ? Center(
+                //               child: ElevatedButton(
+                //                   onPressed: () {
+                //                     RequestSucess(ctx);
+                //                   },
+                //                   child: Text('SUMBIT')),
+                //             )
+                //           : Center()
+                //     ],
+                //   );
+                // }
               }
             }
-
+           
             return const Center(
               child: SizedBox(
                 height: 40,
-                child: CircularProgressIndicator(
-                  color: Colors.deepPurple,
-                ),
+                child: Center(
+                  child: Text("Blood not Available"),
+                )
               ),
             );
           }));
