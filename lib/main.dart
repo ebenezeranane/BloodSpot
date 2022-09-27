@@ -43,7 +43,6 @@ class MyApp extends StatelessWidget {
             '/': (context) => ChooseAuth(),
             '/adminlogin': (context) => AdminLoginPage(),
             '/signup': ((context) => SignUpPage()),
-            '/home': (context) => const CustomBottomNavigation(),
             '/profilepage': (context) => ProfileDetailsPage(),
             '/home': (context) => const CustomBottomNavigation()
           },

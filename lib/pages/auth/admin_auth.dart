@@ -246,23 +246,27 @@ void login(BuildContext context) async {
   }))
       .user;
 
-  if (firebaseUser != null) //user created
-  {
+  if (firebaseUser != null) {
     // Check if user is admin
     FirebaseFirestore.instance.collection("admins").get().then((querySnapshot) {
       for (var result in querySnapshot.docs) {
         if (firebaseUser.email == result['email']) {
-          displayToastMessage("You have logged in successfully.", context);
+
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: ((context) => const CustomBottomNavigation())));
+                  displayToastMessage("You have logged in successfully.", context);
+          
+          //
         } else {
-          Navigator.pop(context);
-           displayToastMessage("Admin Login failed .Please try again!", context);
+          // Navigator.pop(context);
+          // displayToastMessage("Admin Login failed .Please try again!", context);
         }
       }
     });
+
+    
   } else {
     Navigator.pop(context);
     //error occured - display error msg
