@@ -92,6 +92,8 @@ class MapSampleState extends State<MapSample> {
 
   Positioned mapTrackDetails(BuildContext context) {
     // get user  from email
+        // get user  from email
+
     String userName;
     FirebaseAuth _auth = FirebaseAuth.instance;
     String email = _auth.currentUser.email;
